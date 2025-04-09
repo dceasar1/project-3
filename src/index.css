@@ -1,13 +1,119 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
+/* body{
+    background-image: url(./images/donald-giannatti-HWTXldFPVKM-unsplash.jpg);
+  } */
+  .todo-list {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-top: 100px;
+    background-image: url(./images/donald-giannatti-HWTXldFPVKM-unsplash.jpg);
+  }
+  
+  h1 {
+    font-size: 4rem;
+    color: white;
+  }
+  
+  button {
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    border: solid rgb(0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  
+  .add-button {
+    background-color: green;
+    padding: 10px;
+    margin-left: 2px;
+  }
+  
+  .add-button:hover {
+    background-color: #4caf50;
+  }
+  
+  .delete-btn {
+    color: rgb(14, 13, 13);
+  }
+  
+  .delete-btn:hover {
+    background-color: rgb(228, 18, 18);
+  }
+  
+  .update-btn {
+    background-color: rgb(70, 70, 137);
+    padding: 10px 20px;
+  }
+  
+  .update-btn:hover {
+    background-color: rgb(70, 70, 167);
+  }
+  
+  .save-btn {
+    background-color: rgb(55, 53, 51);
+    padding: 8px 16px;
+  }
+  
+  .save-btn:hover {
+    background-color: rgb(158, 103, 93);
+  }
+  
+  /* input[type="text"] {
+    font-size: 1.6rem;
+    padding: 10px;
+    border: 2px solid rgb(12, 11, 11);
+    border-radius: 5px;
+    color: rgb(12, 11, 11);
+  } */
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-container input {
+    flex-grow: 1;
+    padding: 8px;
+    margin-right: 10px;
+  }
+  
+  .input-container button {
+    padding: 8px 16px;
+  }
+  
+  ul {
+    padding: 0;
+  }
+  
+  li {
+    color: whitesmoke;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 15px;
+    background-color: blue;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border: 3px solid;
+    display: flex;
+    align-items: left;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  span {
+    margin-right: 10px;
+    text-decoration: none;
+    flex-grow: 1;
+  }
+  
+  span.completed {
+    text-decoration: line-through;
+  }
+  
