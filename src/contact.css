@@ -1,11 +1,25 @@
+.body{
+    background-image: url(./images/kelly-sikkema-6aY-6B3MiZ4-unsplash.jpg);;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+h1{
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: rgb(201, 56, 56);
+    text-align: center;
+    margin-top: 20px;
+}
+
 .contact-page{
-    background-image: url(./images/kelly-sikkema-6aY-6B3MiZ4-unsplash.jpg);
     width:100%;
     min-height:100vh;
     padding: 16px;
 }
 .contact-page h1{
   margin: 0;
+  color: white;
 }
 
 form {
@@ -25,14 +39,7 @@ form {
     margin-bottom: 5px;
   }
   
-  input, textarea {
-    width: 100%;
-    padding: 8px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
+ 
   
   button {
     padding: 10px 20px;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import "./contact.css"
+import styles from './contact.css';
 
 function Contact() {
-  // Initialize state for each form field
+  
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');

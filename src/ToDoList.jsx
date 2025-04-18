@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import './todolist.css';
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-  const [editingIndex, setEditingIndex] = useState(null);  // Tracks the index of the todo being edited
-  const [editedText, setEditedText] = useState(""); // Stores the new text for editing
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedText, setEditedText] = useState("");
 
-  //add todo
   const handleAddTodo = () => {
     if (newTodo.trim() !== "") {
       setTodos([...todos, { text: newTodo.trim(), checked: false }]);
@@ -14,42 +14,40 @@ const TodoList = () => {
     }
   };
 
-  // Delete todo
   const handleDeleteTodo = (index) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
   };
 
-  // checkbox for  todo
   const handleToggleTodo = (index) => {
     const newTodos = [...todos];
     newTodos[index].checked = !newTodos[index].checked;
     setTodos(newTodos);
   };
 
-  //  editing todo
   const handleEditTodo = (index) => {
-    setEditingIndex(index); // Set the index of the todo being edited
-    setEditedText(todos[index].text);  // Pre-fill the input with the current todo text
+    setEditingIndex(index);
+    setEditedText(todos[index].text);
   };
 
-  // Save the edited todo
   const handleSaveEdit = () => {
     if (editedText.trim() !== "") {
       const newTodos = [...todos];
-      newTodos[editingIndex].text = editedText.trim(); // Update the text of the todo
+      newTodos[editingIndex].text = editedText.trim();
       setTodos(newTodos);
-      setEditingIndex(null); // Stop editing
-      setEditedText(""); // Clear the edited text
+      setEditingIndex(null);
+      setEditedText("");
     }
   };
+
+  const activeTodos = todos.filter(todo => !todo.checked);
+  const completedTodos = todos.filter(todo => todo.checked);
 
   return (
     <div className="todo-list">
       <h1>To-Do List</h1>
 
-      {/* Input and button container */}
       <div className="input-container">
         <input
           type="text"
@@ -62,47 +60,81 @@ const TodoList = () => {
         </button>
       </div>
 
-      {/* Todo list */}
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            <input
-              type="checkbox"
-              checked={todo.checked}
-              onChange={() => handleToggleTodo(index)}
-            />
-            {/* If editing, show an input field to edit the todo */}
-            {editingIndex === index ? (
-              <div>
-                <input
-                  type="text"
-                  value={editedText}
-                  onChange={(e) => setEditedText(e.target.value)} // Update the edited text
-                />
-                <button className="save-btn" onClick={handleSaveEdit}>
-                  Save
-                </button>
-              </div>
-            ) : (
-              <span className={todo.checked ? 'completed' : ''}>
-                {todo.text}
-              </span>
-            )}
+      <div className="todo-sections">
+        {/* Active Todos */}
+        <div className="section">
+          <h2 className="section-title">Tasks</h2>
+          <ul>
+            {activeTodos.map((todo, index) => {
+              const realIndex = todos.findIndex(t => t === todo);
+              return (
+                <li key={realIndex}>
+                  <div className="left-section">
+                    <input
+                      type="checkbox"
+                      checked={todo.checked}
+                      onChange={() => handleToggleTodo(realIndex)}
+                    />
+                    {editingIndex === realIndex ? (
+                      <input
+                        type="text"
+                        value={editedText}
+                        onChange={(e) => setEditedText(e.target.value)}
+                        className="edit-input"
+                      />
+                    ) : (
+                      <span>{todo.text}</span>
+                    )}
+                  </div>
+                  <div className="right-section">
+                    {editingIndex === realIndex ? (
+                      <button className="save-btn" onClick={handleSaveEdit}>
+                        Save
+                      </button>
+                    ) : (
+                      <>
+                        <button className="update-btn" onClick={() => handleEditTodo(realIndex)}>
+                          Update
+                        </button>
+                        <button className="delete-btn" onClick={() => handleDeleteTodo(realIndex)}>
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
-            {/* Update and Delete buttons */}
-            {editingIndex !== index && (
-              <>
-                <button className="update-btn" onClick={() => handleEditTodo(index)}>
-                  Update
-                </button>
-                <button className="delete-btn" onClick={() => handleDeleteTodo(index)}>
-                  Delete
-                </button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+        {/* Completed Todos */}
+        <div className="section">
+          <h2 className="section-title">Completed</h2>
+          <ul>
+            {completedTodos.map((todo, index) => {
+              const realIndex = todos.findIndex(t => t === todo);
+              return (
+                <li key={realIndex}>
+                  <div className="left-section">
+                    <input
+                      type="checkbox"
+                      checked={todo.checked}
+                      onChange={() => handleToggleTodo(realIndex)}
+                    />
+                    <span className="completed">{todo.text}</span>
+                  </div>
+                  <div className="right-section">
+                    <button className="delete-btn" onClick={() => handleDeleteTodo(realIndex)}>
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
